@@ -1,0 +1,17 @@
+<div class="col-2">
+ <table class="table-border-less">
+  <thead>
+   <tr>
+   	<th scope="col">ジャンル検索</th>
+   </tr>
+  </thead>
+  <tbody>
+  	<% types.each do |type| %>
+  	 <tr>
+  	  <td scope="row" class="borderless">
+  	   <%= link_to "#{type.type_name}",members_products_path( params: {products_type_id: type.id }), :method => :get %></td>
+  	 </tr>
+  	 <% end %>
+  </tbody>
+ </table>
+</div>

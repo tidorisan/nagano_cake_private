@@ -1,0 +1,73 @@
+
+<div class="container">
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-2">
+        <h3>管理者ログイン</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h3>   </h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-3">
+
+        <table>
+          <tdoby>
+            <tr>
+            <!-- 一行目 -->
+              <td>
+                  <%= f.label :メールアドレス %>
+              </td>
+              <th>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-offset-2" %>
+              </th>
+            </tr>
+            <!-- 一行目 -->
+            <tr>
+              <!-- 空白 -->
+              <th>
+                <p>  </p>
+              </th>
+            </tr>
+
+            <tr>
+            <!-- 二行目 -->
+              <th>
+                  <%= f.label :パスワード %>
+              </th>
+              <th>
+                <%= f.password_field :password, autocomplete: "current-password", class: "col-md-offset-2" %>
+              </th>
+            </tr>
+            <!-- 二行目 -->
+          </tbody>
+        </table>
+      </div>
+      <!-- col-md-5 col-md-offset-4  -->
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h1>   </h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 col-md-offset-5">
+        <div class="actions">
+          <%= f.submit "ログイン", class: "btn btn-primary col-md-4"  %>
+        </div>
+      </div>
+      <!-- col-md-3 col-md-offset-5" -->
+    </div>
+    <!-- row -->
+  <% end %>
+    <!-- form_for -->
+</div>
+<!-- container -->

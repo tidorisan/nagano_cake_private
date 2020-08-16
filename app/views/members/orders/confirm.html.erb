@@ -1,0 +1,75 @@
+<div class="container">
+	<div class="row">
+		<h2>注文情報確認</h2>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<table class="table table-bordered">
+				<tr class="active">
+					<th>商品名</th>
+					<th>単価(税込)</th>
+					<th>数量</th>
+					<th>小計</th>
+				</tr>
+				<!-- カート商品でeach文 -->
+				<% current_member.basket_products.each do |pro| %>
+					<tr>
+						<td><%= pro.product.name %></td>
+						<td><%= (pro.product.unit_price * 1.1).round.to_s(:delimited, delimiter: ',') %></td>
+						<td><%= pro.quantity %></td>
+						<td><%= (pro.product.unit_price * pro.quantity * 1.1).round.to_s(:delimited, delimiter: ',') %></td>
+						<% @price_array << pro.quantity %>
+						<% @total_array << pro.product.unit_price * pro.quantity %>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+		<div class="col-xs-12">
+			<table class="table table-bordered">
+				<tr>
+					<td class="active">送料</td>
+					<td>800</td>
+				</tr>
+				<tr>
+					<td class="active">商品合計</td>
+					<td><%= (@total_array.sum * 1.1).round.to_s(:delimited, delimiter: ',') %></td>
+				</tr>
+				<tr>
+					<td class="active">請求金額</td>
+					<td><%= (@total_array.sum * 1.1 + 800).round.to_s(:delimited, delimiter: ',') %></td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<tr>
+					<td class="active">支払い方法</td>
+					<td>
+						<%if @order.payment_method == true %>
+							クレジットカード
+						<% else %>
+							銀行振込
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<td class="active">お届け先</td>
+					<td>
+						<%= "#{@post} #{@address} #{@name}" %>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<%= form_for(@order, url: members_orders_path, method: :post) do |f| %>
+				<%= f.hidden_field :payment_method, value: @order.payment_method %>
+				<%= f.hidden_field :post_address, value: @post %>
+				<%= f.hidden_field :address, value: @address %>
+				<%= f.hidden_field :full_name, value: @name %>
+				<%= f.hidden_field :request_amount, value: @total_array.sum %>
+				<%= f.hidden_field :member_id, value: current_member.id %>
+				<%= f.submit "購入を確定する", class: "btn btn-success" %>
+			<% end %>
+		</div>
+	</div>
+</div>

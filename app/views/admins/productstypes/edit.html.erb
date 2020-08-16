@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-1">
+			<h4>ジャンル編集</h4>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<h4>  </h4>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			
+			<%= form_for(@type, url: admins_productstype_path(@type)) do |f| %>
+				<% if @type.errors.any? %>
+					<ul>
+	      				<% @type.errors.full_messages.each do |message| %>
+	        				<li><%= message %></li>
+	      				<% end %>
+		   			</ul>
+				<% end %>
+		
+				<div>
+					<%= f.label :type_name, "ジャンル" %>
+					<%= f.text_field :type_name %>
+		  			<%= f.radio_button :type_status, :true, checked: true %>
+		  			<%= f.label :type_status, "有効", {value: :true, style: "display: inline-block;"} %>
+		  			<%= f.radio_button :type_status, :false %>
+			  		<%= f.label :type_status, "無効", {value: :false, style: "display: inline-block;"} %>
+					<%= f.submit '変更を保存する', class: "btn btn-primary" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

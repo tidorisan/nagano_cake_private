@@ -1,0 +1,65 @@
+<div class="container">
+ <div class="row">
+  <div class="basket-index">
+  	<h2>ショッピングカート</h2>
+  	<% if flash[:notice] %>
+  	 <p class="success-message"><%= flash[:notice] %></p>
+  	<% end %>
+  	<div class="btn-box text-right">
+  	 <%= link_to "カートを空にする", members_basket_products_alldestroy_path, method: :delete, class: "btn btn-danger" %>
+  	</div>
+  	<br>
+  	<table class="table table-bordered">
+  	 <thead>
+  	  <tr>
+  	  	<th>商品名</th>
+  	  	<th>単価(税込)</th>
+  	  	<th>数量</th>
+  	  	<th>小計</th>
+  	  	<th></th>
+  	  </tr>
+  	 </thead>
+  	 <tbody>
+  	  <% @basket_products.each do |basket_product| %>
+  	   <tr>
+  	   	<td>
+  	   	<!-- 商品画像 -->
+  	   	　<%= basket_product.product.name %>
+  	   	</td>
+  	   	<td>
+  	   	　<%= (basket_product.product.unit_price * 1.1).round.to_s(:delimited, delimiter: ',') %>
+  	   	</td>
+  	   	<td>
+  	   	 <%= form_for(basket_product, url:members_basket_product_path(basket_product.id)) do |f| %>
+  	   	  <%= f.number_field :quantity, min:1, style: "width: 50%" %>
+  	   	  <%= f.submit "変更", class: "btn btn-primary" %>
+  	   	 <% end %>
+  	   	<td>
+  	   	 <%= basket_product.sub_total %>
+  	   	</td>
+  	   	<td>
+  	   	 <%= link_to "削除する", members_basket_product_path(basket_product.id), method: :delete, class: "btn btn-danger" %>
+  	   	</td>
+  	   </tr>
+  	  <% end %>
+  	 </tbody>
+  	</table>
+  	<div class="row">
+  	 <div class="col-xs-8"><%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
+  	 </div>
+  	 <div class="col-xs-4">
+  	  <table class="table table-bordered">
+  	   <tbody>
+  	   	<th>合計金額</th>
+  	   	<td><%= @total_price %><P style="float: right;">円</P>
+  	   	</td>
+  	   </tbody>
+  	  </table>
+  	 </div>
+  	</div>
+  	 <div class="orders_new">
+  	  <%= link_to "情報入力に進む", new_members_order_path, class: "btn btn-success" %>
+  	 </div>
+  </div>
+ </div>
+</div>

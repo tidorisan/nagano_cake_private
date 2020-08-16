@@ -1,0 +1,94 @@
+<div class="container">
+	<%= form_for(@dest_new, url: members_destinations_path) do |f| %>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-1">
+				<h4><strong>配送先登録/一覧</strong></h4>
+			</div>
+		</div>
+		<!-- row -->
+
+		<div class="row">
+			<div class="col-md-10">
+				<% if @dest_new.errors.any? %>
+					<ul>
+	      				<% @dest_new.errors.full_messages.each do |message| %>
+	        				<li><%= message %></li>
+	      				<% end %>
+		   			</ul>
+				<% end %>
+				<table>
+					<tr>
+						<th>
+							<%= f.label :post_address, "郵便番号(ハイフンなし)" %>
+						</th>
+						<td>
+							<%= f.text_field :post_address %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<%= f.label :address, "住所" %>
+						</td>
+						<td>
+							<%= f.text_field :address %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<%= f.label :full_name, "宛名" %>
+						</td>
+						<td>
+							<%= f.text_field :full_name %>
+						</td>
+						<td><%= f.submit "登録する", class: "btn-sm btn-success" %></td>
+					</tr>
+				</table>
+			</div>
+			<!-- col -->
+		</div>
+		<!-- row -->
+
+		<div class="row">
+			<div class="col-md-5">
+				<h1>  </h1>
+			</div>
+		</div>
+		<!-- row -->
+
+		<div class="row">
+			<div class="col-md-8">
+				<% if @dests %>
+					<div>
+						<table class="table table-bordered">
+							<thead>
+								<tr class="active">
+									<th>郵便番号</th>
+									<th>住所</th>
+									<th>宛名</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @dests.each do |dest| %>
+									<tr>
+										<td><%= dest.post_address %></td>
+										<td><%= dest.address %></td>
+										<td><%= dest.full_name %></td>
+										<td>
+											<%= link_to "編集する", edit_members_destination_path(dest), class: "btn-sm btn-primary" %>
+											<%= link_to '削除する', members_destination_path(dest), class: "btn-sm btn-danger" ,method: :delete, data: { confirm: '削除してもよろしいですか?' } %>
+										</td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+				<% end %>
+			</div>
+			<!-- col -->
+		</div>
+		<!-- row -->
+	<% end %>
+	<!-- form -->
+</div>
+

@@ -1,0 +1,28 @@
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-6 col-md-offset-3">
+			<div class="leave_field">
+				<p><strong>本当に退会しますか？</strong></p>
+			</div>
+		</div>
+
+		<div class="col-md-6 col-md-offset-3">
+			<h1> </h1>
+		</div>
+
+		<div class="col-md-6 col-md-offset-3">
+			<div class="leave_field">
+				<p>退会すると、会員登録情報や<br>これまでの購入機歴が閲覧できなくなります。<br>退会する場合は、「退会する」をクリックしてください。</p>
+			</div>
+		</div>
+
+		<div class="col-md-6 col-md-offset-3">
+			<div class="leave_field">
+				<%= link_to "退会しない", members_member_path(@member), class: "btn btn-primary" %>
+				<%= link_to "退会する", members_members_path, method: :patch, class: "btn btn-danger" %>
+			</div>
+		</div>
+	</div>
+</div>

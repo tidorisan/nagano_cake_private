@@ -1,0 +1,60 @@
+<div class="container">
+	<%=  form_for(@member, url: "/members/members/#{current_member.id}") do |f| %>
+		<div class="row">
+			<div class="col-md-7 col-md-offset-1">
+				<h3>登録情報編集</h3>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-10">
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>名前</td>
+							<td><%=  f.label :last_name, "(性)" %><%= f.text_field :last_name %></td>
+							<td><%= f.label :first_name, "(名)" %><%= f.text_field :first_name %></td>
+						</tr>
+						<tr>
+							<td>フリガナ</td>
+							<td><%= f.label :last_kana_name, "(セイ)" %><%= f.text_field :last_kana_name %></td>
+							<td><%= f.label :first_kana_name, "(セイ)" %><%= f.text_field :first_kana_name %></td>
+						</tr>
+						<tr>
+							<td>メールアドレス</td><td><%= f.email_field :email %></td>
+						</tr>
+						<tr>
+							<td>郵便番号(ハイフンなし)</td><td><%= f.text_field :post_number %></td>
+						</tr>
+						<tr>
+							<td>住所</td>
+							<div class="field_form"><td><%= f.text_field :address %></td></div>
+						</tr>
+						<tr>
+							<td>電話番号(ハイフンなし)</td><td><%= f.text_field :telephone_number %></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-7">
+				<p>  </p>
+			</div>
+		</div>
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-3 col-md-offset-2">
+				<%= f.submit "編集内容を保存する", class: "btn btn-primary", method: :patch %>
+			</div>
+			<div class="col-md-2 col-md-offset-2">
+				<%= link_to "退会する", members_members_leave_path, class: "btn btn-danger" %>
+<!-- 退会ページのルートにはidが必要だが今は扱えないのでこのまま -->
+			</div>
+		</div>
+		<!-- row -->
+	<%  end %>
+	<!--  form_for -->
+</div>
+<!-- container -->

@@ -1,0 +1,55 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";  /*ここを追加*/
+@import "bootstrap";            /*ここを追加*/
+
+/*ヘッダーを上部に固定するための余白*/
+body {
+ padding-top: 70px;
+}
+/*members/homes/top での右側下の要素を浮かす*/
+.members_orders_top_image {
+  display: inline-block;
+}
+/*members/homes/top でのmain_visual_contect*/
+.main-visual-content {
+	width: 100%;
+	height: 300px;
+	background-image: url(cake.jpg);
+	background-size: cover;
+}
+
+/*members/homes/about でのmembers_about_message*/
+.members_about_message {
+	text-align: center;
+}
+
+.members_top_image {
+	text-align: center;
+}
+
+.leave_field {
+	text-align: center;
+}
+
+.element_center {
+	display: inline-block;
+}
+
+.routes_image_tag{
+	width: 100%;
+	height: 80px;
+}

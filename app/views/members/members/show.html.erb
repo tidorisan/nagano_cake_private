@@ -1,0 +1,90 @@
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-5 col-md-offset-1">
+			<h3>マイページ</h3>
+		</div>
+		<!-- col-md-5 -->
+		<div class="col-md-7">
+			<table>
+				<thead>
+					<tr>
+						<th><h4>登録情報</h4></th>
+						<td><%= link_to "編集する", edit_members_member_path(@member), class: "btn btn-primary" %></td>
+						<td><%= link_to "パスワードを変更する", edit_member_password_path, class: "btn btn-primary" %></td>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<!-- col-md-7-->
+		<!-- スキマ -->
+		<div class="col-md-7">
+			<p>  </p>
+		</div>
+		<!-- スキマの要素 -->
+		<div class="col-md-10">
+			<div>
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th class="active">氏名</th>
+							<td><%= @member.last_name %> <%= @member.first_name %></td>
+						</tr>
+						<tr>
+							<th class="active">カナ</th>
+							<td><%= @member.last_kana_name %> <%= @member.first_kana_name %></td>
+						</tr>
+						<tr>
+							<th class="active">郵便番号</th>
+							<td><%= @member.post_number%></td>
+						</tr>
+						<tr>
+							<th class="active">住所</th>
+							<td><%= @member.address %></td>
+						</tr>
+						<tr>
+							<th class="active">電話番号</th>
+							<td><%= @member.telephone_number %></td>
+						</tr>
+						<tr>
+							<th class="active">メールアドレス</th>
+							<td><%= @member.email %></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- col-md-10 -->
+		<!-- スキマ -->
+		<div class="col-md-7">
+			<h1>  </h1>
+		</div>
+		<!-- スキマの要素 -->
+		<div class="col-md-7">
+			<table>
+				<thead>
+					<tr>
+						<th><h4>発送先</h4></th>
+						<td><%= link_to "一覧を見る", members_destinations_path, class: "btn btn-primary" %></td>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div class="col-md-7">
+			<h1>  </h1>
+		</div>
+		<div class="col-md-7">
+			<table>
+				<thead>
+					<tr>
+						<th><h4>注文履歴</h4></th>
+						<td><%= link_to "一覧を見る", members_orders_path, class: "btn btn-primary" %></td>
+					</tr>
+				</thead>
+			</table>
+		</div>
+
+	</div>
+	<!-- row -->
+</div>
+<!-- container -->

@@ -1,0 +1,52 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1">
+     <!-- rowの一行目として位置を設定している -->
+      <h4>会員一覧</h4>
+    </div>
+	</div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div>
+        <table class="table">
+          <!-- <caption>table title and/or explanatory text</caption> -->
+          <thead>
+            <tr class="active">
+              <th>会員ID</th>
+              <th>氏名</th>
+              <th>メールアドレス</th>
+              <th>ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @members.each do |member|  %>
+              <tr>
+                <td><%= member.id  %></td>
+                <td>
+                    <!-- 氏名にリンクを追加しました -->
+                    <%= link_to admins_member_path(member) do %>
+                      <%= member.last_name %><%= member.first_name %>
+                    <% end %>
+                </td>
+                <td><%= member.email %></td>
+                <% if member.member_status == false %>
+                  <td>有効</td>
+                <% else %>
+                  <td>退会済</td>
+                <% end %>
+              </tr>
+            <% end %>
+            <!-- each -->
+            <td><%= paginate @members %></td>
+            <!-- ページング機能 -->
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+  <!-- row -->
+</div>
+<!-- container -->

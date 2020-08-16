@@ -1,0 +1,64 @@
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-3">
+			<%= render "members/products/type_serch", types: @types %>
+		</div>
+		<div class="col-md-7">
+			<div class="main-visual-content"></div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-10 col-md-offset-3">
+			<div class="routes-message">
+				<h3><strong>オススメ商品</strong></h3>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-2 col-md-offset-3">
+			<div class="members_orders_top_image ">
+				<%= link_to attachment_image_tag(@product_1, :image, class: "routes_image_tag"), members_product_path(@product_1) %>
+				<p><%= @product_1.name %></p>
+				<p>￥<%= @product_1.unit_price %></p>
+			</div>
+		</div>
+
+		<div class="col-md-2">
+			<div class="members_orders_top_image ">
+				<%= link_to attachment_image_tag(@product_2, :image, class: "routes_image_tag"), members_product_path(@product_2) %>
+				<p><%= @product_2.name %></p>
+				<p>¥<%= @product_2.unit_price %></p>
+			</div>
+		</div>
+
+		<div class="col-md-2">
+			<div class="members_orders_top_image ">
+				<%= link_to attachment_image_tag(@product_3, :image, class: "routes_image_tag"), members_product_path(@product_3) %>
+				<p><%= @product_3.name %></p>
+				<p>¥<%= @product_3.unit_price %></p>
+			</div>
+		</div>
+
+		<div class="col-md-2">
+			<div class="members_orders_top_image ">
+				<%= link_to attachment_image_tag(@product_4, :image, class: "routes_image_tag"), members_product_path(@product_4) %>
+				<p><%= @product_4.name %></p>
+				<p>¥<%= @product_4.unit_price %></p>
+			</div>
+		</div>
+		<!-- col -->
+	</div>
+	<!-- row -->
+
+	<div class="row">
+		<div class="col-md-2 col-md-offset-10">
+			<p><%= link_to "もっと見る>", members_products_path %></p>
+			<!-- members/products/indecへ -->
+		</div>
+	</div>
+
+</div>
+<!-- container -->

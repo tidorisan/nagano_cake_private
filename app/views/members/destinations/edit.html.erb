@@ -1,0 +1,55 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 col-md-offset-1">
+			<h4><strong>配送先編集</strong></h4>
+		</div>
+	</div>
+	<!-- row -->
+
+	<div class="row">
+		<div class="col-md-10">
+			
+			<div>
+				<%= form_for(@dest, url: members_destination_path(@dest)) do |f| %>
+					<% if @dest.errors.any? %>
+						<ul>
+	      					<% @dest.errors.full_messages.each do |message| %>
+	        					<li><%= message %></li>
+	      					<% end %>
+		   				</ul>
+					<% end %>
+					<table>
+						<tr>
+							<th>
+								<%= f.label :post_address, "郵便番号(ハイフンなし)" %>
+							</th>
+							<td>
+								<%= f.text_field :post_address %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= f.label :address, "住所" %>
+							</td>
+							<td>
+								<%= f.text_field :address %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= f.label :full_name, "宛名" %>
+							</td>
+							<td>
+								<%= f.text_field :full_name %>
+							</td>
+							<td><%= f.submit "編集する", class: "btn-sm btn-primary" %></td>
+						</tr>
+					</table>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<!-- row -->
+</div>
+
+

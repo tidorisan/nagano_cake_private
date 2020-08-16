@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <%= render 'members/products/type_serch', types: @types %>
+    </div>
+
+    <div class="col-md-4 col-md-offset-1 product_image">
+  	  <!-- 画像投稿機能 -->
+      <%= attachment_image_tag @product, :image, size: "250x150" %>
+    </div>
+
+    <div class="col-md-5 col-md-1 product_contents">
+      <h3><strong><%= @product.name %></strong></h3>
+      <p><%= @product.explanation %></p>
+      <% if @product %>
+        <p>¥ <strong><%= @product.unit_price %></strong> (税込)</P>
+      <% else %>
+        <p>soldout</p>
+      <% end %>
+
+      <% if @product %>
+        <%= form_for(@basket_product, url:  members_basket_products_path) do |f| %>
+          <%= f.hidden_field :product_id, value: @product.id %>
+          <%= f.select :quantity, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], include_blank: "個数選択" %>
+          <%= f.submit 'カートに入れる', class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <!-- row -->
+</div>

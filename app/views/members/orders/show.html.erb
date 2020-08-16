@@ -1,0 +1,78 @@
+<div class="container">
+	<div class="row">
+		<h2>注文履歴詳細</h2>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<p>注文情報</p>
+			<table class="table table-bordered">
+				<tr>
+					<td class="active">注文日</td>
+					<td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+				</tr>
+				<tr>
+					<td class="active">配送先</td>
+					<td>
+						<%= @order.post_address %><br>
+						<%= @order.address %><br>
+						<%= @order.full_name %>
+					</td>
+				</tr>
+				<tr>
+					<td class="active">支払方法</td>
+					<td>
+						<%if @order.payment_method == true %>
+							クレジットカード
+						<% else %>
+							銀行振込
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<td class="active">ステータス</td>
+					<td><%= @order.order_status %></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-xs-6">
+			<p>請求情報</p>
+			<table class="table table-bordered">
+				<tr>
+					<td class="active">商品合計</td>
+					<td><%= (@order.order_products.sum(:price_at_purchase) * 1.1).round.to_s(:delimited, delimiter: ',') %>円</td>
+				</tr>
+				<tr>
+					<td class="active">配送料</td>
+					<td>800円</td>
+				</tr>
+				<tr>
+					<td class="active">ご請求額</td>
+					<td><%= (@order.order_products.sum(:price_at_purchase) * 1.1 + 800).round.to_s(:delimited, delimiter: ',') %>円</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<p>注文内容</p>
+		<table class="table table-bordered">
+			<thead>
+				<tr class="active">
+					<th>商品</th>
+					<th>単価(税込)</th>
+					<th>個数</th>
+					<th>小計</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @order.order_products.each do |pro| %>
+					<tr>
+						<td><%= pro.product.name %></td>
+						<td><%= (pro.product.unit_price * 1.1).round.to_s(:delimited, delimiter: ',') %></td>
+						<td><%= pro.quantity_purchased %></td>
+						<td><%= (pro.price_at_purchase * 1.1).round.to_s(:delimited, delimiter: ',') %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

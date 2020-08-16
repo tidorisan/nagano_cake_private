@@ -1,0 +1,77 @@
+<div class="container">
+	<div class="row">
+		
+		<div class="col-md-3 col-md-offset-1">
+			<h4><strong>ジャンル一覧・追加</strong></h4>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3">
+			<h1>  </h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-5">
+			<%= form_for(@type_new, url: admins_productstypes_path) do |f| %>
+				<% if @type_new.errors.any? %>
+					<ul>
+	      				<% @type_new.errors.full_messages.each do |message| %>
+	        				<li><%= message %></li>
+	      				<% end %>
+		   			</ul>
+				<% end %>
+
+				<div>
+					<%= f.label :type_name, "ジャンル" %>
+					<%= f.text_field :type_name %>
+					<%= f.radio_button :type_status, :true, checked: true %>
+					<%= f.label :type_status, "有効", {value: :true, style: "display: inline-block;"} %>
+					<%= f.radio_button :type_status, :false %>
+					<%= f.label :type_status, "無効", {value: :false, style: "display: inline-block;"} %>
+					<%= f.submit '追加', class: "btn btn-primary" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3">
+			<h1>  </h1>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-6">
+			<table class="table">
+				<thead>
+					<tr class="active">
+						<th>ジャンル</th>
+						<th>状態</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<% @types.each do |type| %>
+					<tbody>
+						<tr>
+							<td><%= type.type_name %></td>
+							<td>
+								<% if type.type_status == true %>
+									有効
+								<% else %>
+									無効
+								<% end %>
+							</td>
+							<td><%= link_to "編集する",edit_admins_productstype_path(type), class: "btn btn-primary" %></td>
+						</tr>
+					</tbody>
+				<% end %>
+			</table>
+		</div>
+	</div>
+
+</div>
+<!-- container -->
